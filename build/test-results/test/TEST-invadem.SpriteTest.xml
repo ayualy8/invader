@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="invadem.SpriteTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-11-13T05:09:57" hostname="192-168-1-5.tpgi.com.au" time="0.354">
+  <properties/>
+  <testcase name="TestCollision" classname="invadem.SpriteTest" time="0.151"/>
+  <testcase name="TestSpriteKill" classname="invadem.SpriteTest" time="0.202"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

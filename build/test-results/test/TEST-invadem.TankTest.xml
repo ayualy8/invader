@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="invadem.TankTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2019-11-13T05:09:56" hostname="192-168-1-5.tpgi.com.au" time="0.519">
+  <properties/>
+  <testcase name="testTankCanFire" classname="invadem.TankTest" time="0.154"/>
+  <testcase name="testTankMovement" classname="invadem.TankTest" time="0.137"/>
+  <testcase name="testTankConstruction" classname="invadem.TankTest" time="0.227"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

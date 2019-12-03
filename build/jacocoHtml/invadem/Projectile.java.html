@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Projectile.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">InvaderAssignment</a> &gt; <a href="index.source.html" class="el_package">invadem</a> &gt; <span class="el_source">Projectile.java</span></div><h1>Projectile.java</h1><pre class="source lang-java linenums">package invadem;
+import java.util.List;
+import java.util.ArrayList;
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class Projectile extends Sprite{
+  int velocity;
+  int dmg;
+
+  public Projectile(PImage img, int x, int y, int dmg, int vel){
+<span class="fc" id="L12">    super(x, y, img.width, img.height, img, 1, 0);</span>
+<span class="fc" id="L13">    this.velocity = vel;</span>
+<span class="fc" id="L14">    this.dmg = dmg;</span>
+<span class="fc" id="L15">  }</span>
+
+  public void move(App app){
+<span class="fc" id="L18">    this.y += this.velocity;</span>
+<span class="fc" id="L19">  }</span>
+
+  public void collide(App app) {
+<span class="nc bnc" id="L22" title="All 2 branches missed.">    boolean collidesWithBarrier1 = app.barrier1.top1.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L23" title="All 2 branches missed.">      app.barrier1.top2.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L24" title="All 2 branches missed.">      app.barrier1.top3.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L25" title="All 2 branches missed.">      app.barrier1.right.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L26" title="All 2 branches missed.">      app.barrier1.left.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L27" title="All 2 branches missed.">      app.barrier1.bottom1.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L28" title="All 2 branches missed.">      app.barrier1.bottom2.collision(app, this.x, this.y, this.width, this.height, this.dmg);</span>
+
+<span class="nc bnc" id="L30" title="All 2 branches missed.">    boolean collidesWithbarrier2 = app.barrier2.top1.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L31" title="All 2 branches missed.">      app.barrier2.top2.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L32" title="All 2 branches missed.">      app.barrier2.top3.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">      app.barrier2.right.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L34" title="All 2 branches missed.">      app.barrier2.left.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L35" title="All 2 branches missed.">      app.barrier2.bottom1.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L36" title="All 2 branches missed.">      app.barrier2.bottom2.collision(app, this.x, this.y, this.width, this.height, this.dmg);</span>
+
+<span class="nc bnc" id="L38" title="All 2 branches missed.">    boolean collidesWithbarrier3 = app.barrier3.top1.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L39" title="All 2 branches missed.">      app.barrier3.top2.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L40" title="All 2 branches missed.">      app.barrier3.top3.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L41" title="All 2 branches missed.">      app.barrier3.right.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L42" title="All 2 branches missed.">      app.barrier3.left.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L43" title="All 2 branches missed.">      app.barrier3.bottom1.collision(app, this.x, this.y, this.width, this.height, this.dmg) ||</span>
+<span class="nc bnc" id="L44" title="All 2 branches missed.">      app.barrier3.bottom2.collision(app, this.x, this.y, this.width, this.height, this.dmg);</span>
+
+<span class="nc" id="L46">    boolean collidesWithInvader = false;</span>
+<span class="nc" id="L47">    boolean collidesWithTank = false;</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">    if (this.velocity &lt; 0) {</span>
+<span class="nc" id="L49">      collidesWithInvader = app.invader.collide(app, this.x, this.y, this.width, this.height, this.dmg);</span>
+    } else {
+<span class="nc" id="L51">      collidesWithTank = app.tank.collision(app, this.x, this.y, this.width, this.height, this.dmg);</span>
+    }
+
+<span class="nc bnc" id="L54" title="All 10 branches missed.">    if (collidesWithBarrier1 || collidesWithbarrier2 || collidesWithbarrier3 || collidesWithInvader || collidesWithTank) {</span>
+<span class="nc" id="L55">      this.kill();</span>
+    }
+<span class="nc" id="L57">  }</span>
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Invader.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">InvaderAssignment</a> &gt; <a href="index.source.html" class="el_package">invadem</a> &gt; <span class="el_source">Invader.java</span></div><h1>Invader.java</h1><pre class="source lang-java linenums">package invadem;
+import java.util.List;
+import java.util.ArrayList;
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class Invader extends Sprite{
+  int count;
+  boolean right;
+  boolean moving;
+  int type;
+
+
+  public Invader(int x, int y, List&lt;PImage&gt; img, int type, int score, int HP){
+<span class="fc" id="L15">    super(x,  y, 16, 16, img, HP, score);</span>
+<span class="fc" id="L16">    count = 15;</span>
+<span class="fc" id="L17">    right = true;</span>
+<span class="fc" id="L18">    moving = true;</span>
+<span class="fc" id="L19">    this.type = type;</span>
+
+<span class="fc" id="L21">  }</span>
+
+
+
+
+  public void move(App app){
+<span class="fc bfc" id="L27" title="All 2 branches covered.">    if(moving){</span>
+<span class="fc" id="L28">      count ++;</span>
+<span class="fc bfc" id="L29" title="All 4 branches covered.">      if(count &lt; 30 &amp;&amp; right){</span>
+<span class="fc" id="L30">        this.x += 1;</span>
+<span class="pc bpc" id="L31" title="1 of 4 branches missed.">      } else if(count &lt; 30 &amp;&amp; right == false) {</span>
+<span class="fc" id="L32">        this.x -= 1;</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">      } else if(count &lt; 37){</span>
+<span class="fc" id="L34">        this.y += 1;</span>
+      } else {
+<span class="fc" id="L36">        this.y += 1;</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        right = !(right);</span>
+<span class="fc" id="L38">        count = 0;</span>
+      }
+<span class="fc" id="L40">      moving = false;</span>
+    } else {
+<span class="fc" id="L42">      moving = true;</span>
+    }
+
+<span class="fc" id="L45">  }</span>
+
+  @Override
+  public void draw(App app){
+<span class="fc bfc" id="L49" title="All 2 branches covered.">    if (count &lt; 30) {</span>
+<span class="fc" id="L50">      app.image(images.get(0 + ((this.type - 1) * 2)), x, y, width, height);</span>
+    } else {
+<span class="fc" id="L52">      app.image(images.get(1 + ((this.type - 1) * 2)), x, y, width, height);</span>
+    }
+<span class="fc" id="L54">  }</span>
+
+  public void shoot(App app){
+<span class="nc bnc" id="L57" title="All 2 branches missed.">    if (this.type == 3) {</span>
+<span class="nc" id="L58">      app.projectiles.add(new Projectile(app.bigProjectileImage, this.x+8, this.y+16, 3, 1));</span>
+    } else {
+<span class="nc" id="L60">      app.projectiles.add(new Projectile(app.projectileImage, this.x+8, this.y+16, 1, 1));</span>
+    }
+<span class="nc" id="L62">  }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>

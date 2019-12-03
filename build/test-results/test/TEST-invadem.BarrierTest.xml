@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="invadem.BarrierTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2019-11-13T05:09:55" hostname="192-168-1-5.tpgi.com.au" time="1.167">
+  <properties/>
+  <testcase name="barrierImages" classname="invadem.BarrierTest" time="1.031"/>
+  <testcase name="barrierConstruction" classname="invadem.BarrierTest" time="0.136"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

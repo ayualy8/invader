@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="ja"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>App.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">InvaderAssignment</a> &gt; <a href="index.source.html" class="el_package">invadem</a> &gt; <span class="el_source">App.java</span></div><h1>App.java</h1><pre class="source lang-java linenums">package invadem;
+import java.util.List;
+import java.util.ArrayList;
+//import processing.core.*;
+import processing.core.PApplet;
+import processing.core.PImage;
+import processing.core.PFont;
+import java.util.concurrent.TimeUnit;
+import java.lang.Math;
+
+public class App extends PApplet {
+    Tank tank;
+    PImage tankImage;
+    List&lt;Integer&gt; keyboard;
+    Swarm invader;
+    List&lt;PImage&gt; invaderImage;
+    Bento barrier1;
+    Bento barrier2;
+    Bento barrier3;
+    List&lt;PImage&gt; leftImages;
+    List&lt;PImage&gt; rightImages;
+    List&lt;PImage&gt; solidImages;
+    List&lt;PImage&gt; topImages;
+    List&lt;Projectile&gt; projectiles;
+    PImage projectileImage;
+    PImage bigProjectileImage;
+    PImage gameover;
+    PImage nextlevel;
+    int gameStartFrame;
+    String gameState;
+<span class="fc" id="L31">    int level = 1;</span>
+<span class="fc" id="L32">    int score = 0;</span>
+<span class="fc" id="L33">    int highscore = 10000;</span>
+    PFont font;
+
+
+<span class="fc" id="L37">    public App() {</span>
+
+
+        //Set up your objects
+<span class="fc" id="L41">    }</span>
+
+    public void setup() {
+<span class="fc" id="L44">        frameRate(60);</span>
+<span class="fc" id="L45">        tankImage = loadImage(&quot;tank1.png&quot;);</span>
+<span class="fc" id="L46">        tank = new Tank(tankImage);</span>
+<span class="fc" id="L47">        keyboard = new ArrayList();</span>
+<span class="fc" id="L48">        invaderImage = new ArrayList();</span>
+<span class="fc" id="L49">        invaderImage.add(loadImage(&quot;invader1.png&quot;));</span>
+<span class="fc" id="L50">        invaderImage.add(loadImage(&quot;invader2.png&quot;));</span>
+<span class="fc" id="L51">        invaderImage.add(loadImage(&quot;invader1_armoured.png&quot;));</span>
+<span class="fc" id="L52">        invaderImage.add(loadImage(&quot;invader2_armoured.png&quot;));</span>
+<span class="fc" id="L53">        invaderImage.add(loadImage(&quot;invader1_power.png&quot;));</span>
+<span class="fc" id="L54">        invaderImage.add(loadImage(&quot;invader2_power.png&quot;));</span>
+<span class="fc" id="L55">        invader = new Swarm(invaderImage);</span>
+<span class="fc" id="L56">        leftImages = new ArrayList();</span>
+<span class="fc" id="L57">        rightImages = new ArrayList();</span>
+<span class="fc" id="L58">        topImages = new ArrayList();</span>
+<span class="fc" id="L59">        solidImages = new ArrayList();</span>
+<span class="fc" id="L60">        leftImages.add(loadImage(&quot;barrier_left1.png&quot;));</span>
+<span class="fc" id="L61">        leftImages.add(loadImage(&quot;barrier_left2.png&quot;));</span>
+<span class="fc" id="L62">        leftImages.add(loadImage(&quot;barrier_left3.png&quot;));</span>
+<span class="fc" id="L63">        leftImages.add(loadImage(&quot;empty.png&quot;));</span>
+<span class="fc" id="L64">        topImages.add(loadImage(&quot;barrier_top1.png&quot;));</span>
+<span class="fc" id="L65">        topImages.add(loadImage(&quot;barrier_top2.png&quot;));</span>
+<span class="fc" id="L66">        topImages.add(loadImage(&quot;barrier_top3.png&quot;));</span>
+<span class="fc" id="L67">        topImages.add(loadImage(&quot;empty.png&quot;));</span>
+<span class="fc" id="L68">        rightImages.add(loadImage(&quot;barrier_right1.png&quot;));</span>
+<span class="fc" id="L69">        rightImages.add(loadImage(&quot;barrier_right2.png&quot;));</span>
+<span class="fc" id="L70">        rightImages.add(loadImage(&quot;barrier_right3.png&quot;));</span>
+<span class="fc" id="L71">        rightImages.add(loadImage(&quot;empty.png&quot;));</span>
+<span class="fc" id="L72">        solidImages.add(loadImage(&quot;barrier_solid1.png&quot;));</span>
+<span class="fc" id="L73">        solidImages.add(loadImage(&quot;barrier_solid2.png&quot;));</span>
+<span class="fc" id="L74">        solidImages.add(loadImage(&quot;barrier_solid3.png&quot;));</span>
+<span class="fc" id="L75">        solidImages.add(loadImage(&quot;empty.png&quot;));</span>
+<span class="fc" id="L76">        barrier1 = new Bento(200, 420, leftImages, topImages, rightImages, solidImages);</span>
+<span class="fc" id="L77">        barrier2 = new Bento(308, 420, leftImages, topImages, rightImages, solidImages);</span>
+<span class="fc" id="L78">        barrier3 = new Bento(416, 420, leftImages, topImages, rightImages, solidImages);</span>
+<span class="fc" id="L79">        gameover = loadImage(&quot;gameover.png&quot;);</span>
+<span class="fc" id="L80">        nextlevel = loadImage(&quot;nextlevel.png&quot;);</span>
+<span class="fc" id="L81">        font = createFont(&quot;PressStart2P-Regular.tff&quot;, 16);</span>
+<span class="fc" id="L82">        textFont(font);</span>
+
+
+<span class="fc" id="L85">        projectileImage = (loadImage(&quot;projectile.png&quot;));</span>
+<span class="fc" id="L86">        bigProjectileImage = loadImage(&quot;projectile_lg.png&quot;);</span>
+<span class="fc" id="L87">        projectiles = new ArrayList();</span>
+
+<span class="fc" id="L89">        gameStartFrame = frameCount - 1;</span>
+
+<span class="fc" id="L91">        gameState = &quot;playing&quot;;</span>
+<span class="fc" id="L92">    }</span>
+
+    public void settings() {
+<span class="fc" id="L95">        size(640, 480);</span>
+<span class="fc" id="L96">    }</span>
+
+    public void draw() {
+<span class="pc bpc" id="L99" title="2 of 4 branches missed.">        if (gameState.equals(&quot;gameover&quot;) || gameState.equals(&quot;nextlevel&quot;)) {</span>
+<span class="nc" id="L100">          delay(3000);</span>
+<span class="nc" id="L101">          setup();</span>
+        }
+<span class="fc" id="L103">        background(0);</span>
+<span class="fc" id="L104">        textAlign(LEFT, TOP);</span>
+<span class="fc" id="L105">        text(&quot;Current Score: &quot; + score, 0, 0);</span>
+<span class="fc" id="L106">        textAlign(RIGHT, TOP);</span>
+<span class="fc" id="L107">        text(&quot;High Score: &quot; + highscore, width, 0);</span>
+        //Main Game Loop
+
+<span class="pc bpc" id="L110" title="1 of 2 branches missed.">        if ((frameCount - gameStartFrame) % (Math.max(6 - level, 1) * 60) == 0) {</span>
+<span class="nc" id="L111">          invader.invaders.get((int)(Math.random() * invader.invaders.size())).shoot(this);</span>
+        }
+
+<span class="pc bpc" id="L114" title="1 of 2 branches missed.">        if(keyboard.contains(37)) {</span>
+<span class="nc" id="L115">          tank.move(-1);</span>
+
+        }
+<span class="pc bpc" id="L118" title="1 of 2 branches missed.">        if(keyboard.contains(39)){</span>
+<span class="nc" id="L119">          tank.move(1);</span>
+        }
+
+<span class="fc" id="L122">        tank.draw(this);</span>
+<span class="fc" id="L123">        invader.move(this);</span>
+<span class="fc" id="L124">        invader.draw(this);</span>
+<span class="fc" id="L125">        barrier1.draw(this);</span>
+<span class="fc" id="L126">        barrier2.draw(this);</span>
+<span class="fc" id="L127">        barrier3.draw(this);</span>
+
+
+
+<span class="pc bpc" id="L131" title="1 of 2 branches missed.">        for(int i = 0; i &lt; projectiles.size(); i++){</span>
+<span class="nc" id="L132">          projectiles.get(i).move(this);</span>
+<span class="nc" id="L133">          projectiles.get(i).collide(this);</span>
+<span class="nc" id="L134">          projectiles.get(i).draw(this);</span>
+        }
+<span class="pc bnc" id="L136" title="All 2 branches missed.">        projectiles.removeIf(n -&gt; n.HP &lt;= 0);</span>
+<span class="pc bpc" id="L137" title="1 of 2 branches missed.">        invader.invaders.removeIf(n -&gt; n.HP &lt;= 0);</span>
+
+<span class="pc bpc" id="L139" title="1 of 2 branches missed.">        if (invader.invaders.size() == 0) {</span>
+<span class="nc" id="L140">          level += 1;</span>
+<span class="nc" id="L141">          gameState = &quot;nextlevel&quot;;</span>
+<span class="nc" id="L142">          background(0);</span>
+<span class="nc" id="L143">          image(nextlevel, 264, 202, 112, 16);</span>
+<span class="pc bpc" id="L144" title="2 of 4 branches missed.">        } else if (tank.HP == 0 || invader.invaders.get(invader.invaders.size() - 1).y &gt;= 394) {</span>
+<span class="nc" id="L145">          gameState = &quot;gameover&quot;;</span>
+<span class="nc" id="L146">          background(0);</span>
+<span class="nc" id="L147">          image(gameover, 264, 202, 112, 16);</span>
+<span class="nc bnc" id="L148" title="All 2 branches missed.">          if (score &gt; highscore) {</span>
+<span class="nc" id="L149">            highscore = score;</span>
+<span class="nc" id="L150">            score = 0;</span>
+          }
+        }
+
+<span class="fc" id="L154">    }</span>
+
+    public static void main(String[] args) {
+<span class="nc" id="L157">        PApplet.main(&quot;invadem.App&quot;);</span>
+<span class="nc" id="L158">    }</span>
+
+    public void keyPressed(){
+<span class="nc bnc" id="L161" title="All 2 branches missed.">      if(keyboard.contains(keyCode) != true){</span>
+<span class="nc" id="L162">        keyboard.add(keyCode);</span>
+      }
+<span class="nc bnc" id="L164" title="All 4 branches missed.">      if(keyboard.contains(32) &amp;&amp; tank.fireable){</span>
+<span class="nc" id="L165">        tank.fire(this);</span>
+<span class="nc" id="L166">        tank.fireable = false;</span>
+      }
+<span class="nc" id="L168">    }</span>
+
+    public void keyReleased(){
+<span class="nc" id="L171">      keyboard.remove(Integer.valueOf(keyCode));</span>
+<span class="nc bnc" id="L172" title="All 2 branches missed.">      if (keyCode == 32){</span>
+<span class="nc" id="L173">        tank.fireable = true;</span>
+
+      }
+
+<span class="nc" id="L177">    }</span>
+
+
+
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.4.201905082037</span></div></body></html>
