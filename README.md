@@ -42,5 +42,5 @@ AnimationData {
 }
 ```
 
-###### this code was written for the assignment 2 of a course at the University of Sydney.
+###### ଘ(੭ˊ꒳​ˋ)੭✧ this code was written for the assignment 2 of a course at the University of Sydney.
 
