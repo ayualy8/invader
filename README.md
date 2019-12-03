@@ -44,5 +44,5 @@ AnimationData {
 
 ###### ଘ(੭ˊ꒳​ˋ)੭✧ this code was written for the assignment 2 of a course at the University of Sydney.
 
-### __all the java files are in "src" folder (๑•̀ㅂ•́)و✧__
+### __All the java files are in "src" folder (๑•̀ㅂ•́)و✧__
 
