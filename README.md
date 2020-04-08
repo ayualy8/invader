@@ -2,9 +2,9 @@
 
 ## ꒰(꜆꜄•ω•)꜆꜄꜆ ᵃʳⁱᵍᵅᵗᵒ for visiting my repository!
 
-Invader game built through [Gradle Built Tool]( https://gradle.org)💓
+Invader game built through [Gradle Build Tool]( https://gradle.org)💓
 
-### Gradle Built Tool;
+### Gradle Build Tool;
 [![gradlelogo](https://user-images.githubusercontent.com/52661787/70033298-42d21a80-1603-11ea-885d-b218f0829aff.png)](https://gradle.org)
 
 
